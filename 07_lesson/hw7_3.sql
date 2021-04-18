@@ -33,7 +33,13 @@ VALUES
 ('kazan', 'Казань'),
 ('omsk', 'Омск');
 
+-- через вложенный запрос
 SELECT
-(SELECT name FROM cities WHERE label = from_city) AS Из,
-(SELECT name FROM cities WHERE label = to_city) AS В
+(SELECT name FROM cities WHERE label = from_city) AS 'Из',
+(SELECT name FROM cities WHERE label = to_city) AS 'В'
 FROM flights;
+
+--через join
+SELECT point_a.name AS 'ИЗ', point_b.name AS 'В' FROM flights f
+LEFT JOIN cities as point_a on point_a.label = f.from_city
+LEFT JOIN cities as point_b on point_b.label = f.to_city;
