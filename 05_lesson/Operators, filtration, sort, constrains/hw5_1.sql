@@ -37,12 +37,13 @@ SELECT value FROM storehouses_products ORDER BY value = 0, value ASC;
 (по желанию) Из таблицы users необходимо извлечь пользователей, родившихся в августе и мае.
 Месяцы заданы в виде списка английских названий (may, august)
 */
-SELECT name,
-CASE month(birthday_at)
-	WHEN 5 THEN 'may'
-	WHEN 8 THEN 'august'
-END AS birth_month FROM users WHERE MONTH(birthday_at) IN (5, 8);
-
+--SELECT name,
+--CASE month(birthday_at)
+--	WHEN 5 THEN 'may'
+--	WHEN 8 THEN 'august'
+--END AS birth_month FROM users WHERE MONTH(birthday_at) IN (5, 8);
+SELECT name, monthname(birthday_at) AS birth_month FROM users
+WHERE monthname(birthday_at) IN ('may', 'august');
 
 
 
